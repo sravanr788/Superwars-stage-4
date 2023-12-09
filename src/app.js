@@ -37,22 +37,6 @@ class Player {
   };
 
   // Progression 2: Create a player for displaying
-//   view = () => {
-//     // Accumulate HTML template
-//     // Type your code here
-//     let player = ``;
-//     for(let i=0;i<PLAYERS.length;i++){
-//     player+= `
-//     <div class="player" data-id="${PLAYERS[i].id}">
-//     <img src="${PLAYERS[i].image}" />
-//     <div class="name">${PLAYERS[i].name}</div>
-//     <div class="strength">${PLAYERS[i].strength}</div>
-// </div>`
-// }
-//     return player;
-// };
-// }
-
 view = () => {
   // Accumulate HTML template
   // Type your code here
