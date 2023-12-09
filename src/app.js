@@ -27,7 +27,7 @@ class Player {
     // Progression 1: Create member variables and assign values
     this.id = id;
     this.name = name;
-    this.image = `./images/super-${id+1}.png`;
+    this.image = `images/super-${id+1}.png`;
     this.strength = this.getRandomStrength();
     this.type = type;
   }
@@ -37,16 +37,38 @@ class Player {
   };
 
   // Progression 2: Create a player for displaying
+//   view = () => {
+//     // Accumulate HTML template
+//     // Type your code here
+//     let player = ``;
+//     for(let i=0;i<PLAYERS.length;i++){
+//     player+= `
+//     <div class="player" data-id="${PLAYERS[i].id}">
+//     <img src="${PLAYERS[i].image}" />
+//     <div class="name">${PLAYERS[i].name}</div>
+//     <div class="strength">${PLAYERS[i].strength}</div>
+// </div>`
+// }
+//     return player;
+// };
+// }
+
 view = () => {
   // Accumulate HTML template
-  // Type your code here  
+  // Type your code here
   let player = document.createElement('div');
-  let players = `<div class="player" data-id="${this.id}">
-                  <img src="${this.image}">
-                  <div class="name">${this.name}</div>
-                 <div class="strength">${this.strength}</div>
-                </div>`
-  player.innerHTML+=players;
+  player.classList.add('player');
+  player.setAttribute('data-id', this.id);
+  if (this.selected == true) player.classList.add('selected');
+  let image = document.createElement('img');
+  image.setAttribute('src', this.image);
+  let name = document.createElement('div');
+  name.textContent = this.name;
+  let strength = document.createElement('div');
+  strength.textContent = this.strength;
+  strength.className = 'strength';
+  player.append(image, name, strength);
+
   return player;
 };
 }
@@ -58,15 +80,10 @@ class Superwar {
     // Create a field players
     // Use Map method to loop through players argument and create new players
     // Type your code here
-    this.players = players.map((player, i) => {
-      let type;
-      if (i % 2 === 0) {
-        type = 'hero';
-      } else {
-        type = 'villain';
-      }
-      return new Player(i, player, type);
-    });    
+    this.players=players.map((player,i)=>{
+      let type = i % 2 == 0 ? 'hero' : 'villain';
+      return new Player(i,player,type)
+    })
   }
 
   // Display players in HTML
